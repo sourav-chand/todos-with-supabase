@@ -20,16 +20,19 @@ This is a simple todos application built with React, Vite, and Tailwind CSS, fea
 
 1. Clone the repository
 2. Install dependencies:
+
    ```
    npm install
    ```
 
 3. Set up Supabase:
+
    - Create a Supabase project at https://supabase.com/
    - Update the `.env` file with your Supabase credentials
    - Follow the instructions in [SUPABASE_SETUP.md](SUPABASE_SETUP.md) to create the todos table
 
 4. Run the development server:
+
    ```
    npm run dev
    ```
