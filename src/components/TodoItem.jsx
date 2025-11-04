@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const TodoItem = ({ todo, onToggle, onDelete }) => {
+const TodoItem = ({ todo, onToggle, onDelete, onUpdate }) => {
   const [editing, setEditing] = useState(false);
   const [editText, setEditText] = useState(todo.title);
 
@@ -17,8 +17,9 @@ const TodoItem = ({ todo, onToggle, onDelete }) => {
   };
 
   const handleSave = async () => {
-    // For now, we'll just toggle editing mode
-    // In a more complete implementation, you might update the todo text
+    if (editText.trim() && editText !== todo.title) {
+      await onUpdate(todo.id, editText.trim());
+    }
     setEditing(false);
   };
 
