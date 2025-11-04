@@ -133,6 +133,25 @@ const TodoList = ({ user, onLogout }) => {
     }
   };
 
+  const updateTodo = async (id, title) => {
+    try {
+      const { data, error } = await supabase
+        .from("todos")
+        .update({ title })
+        .eq("id", id)
+        .select()
+        .single();
+
+      if (error) throw error;
+
+      setTodos((prevTodos) =>
+        prevTodos.map((todo) => (todo.id === id ? { ...todo, title } : todo))
+      );
+    } catch (error) {
+      console.error("Error updating todo:", error.message);
+    }
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -187,6 +206,7 @@ const TodoList = ({ user, onLogout }) => {
                   todo={todo}
                   onToggle={toggleTodo}
                   onDelete={deleteTodo}
+                  onUpdate={updateTodo}
                 />
               ))}
             </ul>
